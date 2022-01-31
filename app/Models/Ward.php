@@ -9,24 +9,26 @@ class Ward extends Model
 {
     use HasFactory;
 
-    //Relacion de uno a muchos
-    //Un pabellon puede tener muchas carceles
+    // Relación de uno a muchos
+    // Un pabellón puede tener muchas cárceles
     public function jails()
     {
         return $this->hasMany(Jail::class);
     }
 
-    //Relacion de muchos a muchos
-    //Un pabellon puede tener muchos usuarios
+    // Relación de muchos a muchos
+    // Un pabellón puede tener muchos usuarios
     public function users()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
-    //Relación plimórfica uno a uno
-    //Un pabellon puede tener una imagen
+
+    // Relación polimórfica uno a uno
+    // Un pabellón pueden tener una imagen
     public function image()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->morphOne(Image::class,'imageable');
     }
+
 }

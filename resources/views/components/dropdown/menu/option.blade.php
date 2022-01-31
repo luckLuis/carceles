@@ -1,4 +1,5 @@
 <div x-data="{ dropdownOpen: false }" class="relative">
+
     <button @click="dropdownOpen = ! dropdownOpen"
         class="flex items-center h-14 space-x-2 focus:outline-none text-gray-700">
 
@@ -12,4 +13,5 @@
         {{ $content }}
 
     </div>
+
 </div>
