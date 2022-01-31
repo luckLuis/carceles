@@ -8,24 +8,16 @@ use Illuminate\Support\Facades\Password;
 
 class PasswordResetLinkController extends Controller
 {
-    /**
-     * Display the password reset link request view.
-     *
-     * @return \Illuminate\View\View
-     */
+
+    // Invocación de la vista
     public function create()
     {
         return view('auth.forgot-password');
     }
 
-    /**
-     * Handle an incoming password reset link request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+
+    // En base al email realiza el restablecimiento de la constraseña
+    // el cual debe ser procesada en el correo
     public function store(Request $request)
     {
         $request->validate([
