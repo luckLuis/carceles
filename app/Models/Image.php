@@ -14,6 +14,7 @@ class Image extends Model
         'path',
     ];
 
+
     use HasFactory;
 
     // Relación polimórfica uno a uno
@@ -27,12 +28,11 @@ class Image extends Model
     public function getUrl()
     {
         return Str::startsWith($this->path, 'https://')
+
             ? $this->path
+            
             : Storage::url($this->path);
     }
 
 
-
-
-    use HasFactory;
 }

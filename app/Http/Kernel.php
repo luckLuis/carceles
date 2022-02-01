@@ -63,5 +63,10 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        // https://laravel.com/docs/8.x/middleware#registering-middleware
+        'verify.user.role' => \App\Http\Middleware\VerifyUserRole::class,
+        'active.user' => \App\Http\Middleware\ActiveUser::class,
+
+
     ];
 }
