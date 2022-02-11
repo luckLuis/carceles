@@ -1,5 +1,6 @@
-
 @extends('dashboard')
+
+
 @section('content')
 
 <div class="mt-2">

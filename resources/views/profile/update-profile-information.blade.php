@@ -130,8 +130,6 @@
             <div class="col-span-6 flex justify-end">
                 <x-button class="min-w-max">{{ __('Update') }}</x-button>
             </div>
-
-
         </form>
     </x-slot>
 

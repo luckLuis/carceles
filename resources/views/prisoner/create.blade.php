@@ -13,7 +13,6 @@
 
             <x-slot name="form">
                 <form method="POST" action="{{ route('prisoner.store') }}" class="grid grid-cols-6 gap-6">
-
                     @csrf
 
                     <!--First name-->

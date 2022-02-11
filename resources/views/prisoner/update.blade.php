@@ -99,34 +99,34 @@
 
                     <!--Phone number-->
                     <div class="col-span-6 sm:col-span-3">
-                        <x-label for="personal_phone" :value="__('Phone number')"/>
+                        <x-label for="phone_number" :value="__('Phone number')"/>
 
-                        <x-input id="personal_phone"
+                        <x-input id="phone_number"
                                  class="block mt-2 w-full"
                                  type="text"
-                                 name="personal_phone"
+                                 name="phone_number"
                                  maxlength="10"
-                                 :value="old('personal_phone') ?? $prisoner->personal_phone"
+                                 :value="old('phone_number') ?? $prisoner->phone_number"
                                  placeholder="Example: 0989999999"
                                  required/>
 
-                        <x-input-error for="personal_phone" class="mt-2"/>
+                        <x-input-error for="phone_number" class="mt-2"/>
                     </div>
 
                     <!--Home phone number-->
                     <div class="col-span-6 sm:col-span-3">
-                        <x-label for="home_phone" :value="__('Home phone number')"/>
+                        <x-label for="home_phone_number" :value="__('Home phone number')"/>
 
-                        <x-input id="home_phone"
+                        <x-input id="home_phone_number"
                                  class="block mt-2 w-full"
                                  type="text"
-                                 name="home_phone"
+                                 name="home_phone_number"
                                  maxlength="9"
-                                 :value="old('home_phone') ?? $prisoner->home_phone"
+                                 :value="old('home_phone_number') ?? $prisoner->home_phone_number"
                                  placeholder="Example: 022999999"
                                  required/>
 
-                        <x-input-error for="home_phone" class="mt-2"/>
+                        <x-input-error for="home_phone_number" class="mt-2"/>
                     </div>
 
                     <!--Address-->

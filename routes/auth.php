@@ -26,6 +26,9 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
+
+
+
 // RUTAS PARA EL RESTABLECIMIENTO DE LA CONTRASEÑA Y ENVÍO AL EMAIL
 // invocación de la vista
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])

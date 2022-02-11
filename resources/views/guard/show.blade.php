@@ -112,11 +112,24 @@
                                  class="block mt-2 w-full"
                                  type="text"
                                  name="address"
+                                 :value="$director->address"
+                                 disabled/>
+                    </div>
+
+
+                    <!--Address-->
+                    <div class="col-span-6">
+                        <x-label for="address" :value="__('Address')"/>
+
+                        <x-input id="address"
+                                 class="block mt-2 w-full"
+                                 type="text"
+                                 name="address"
                                  :value="$guard->address"
                                  disabled/>
                     </div>
 
-                   <!--Actions-->
+                    <!--Actions-->
                     <div class="col-span-6 flex justify-end">
                         <x-link :href="route('guard.index')">
                             <x-button class="min-w-max">{{ __('Previous page') }}</x-button>

@@ -7,7 +7,6 @@
     </x-slot>
 
     <x-slot name="form">
-
         <form method="POST" action="{{ route('user-password.update') }}" class="grid grid-cols-6 gap-6">
             @method('PUT')
             @csrf
@@ -41,6 +40,7 @@
                 <x-input-error for="password" class="mt-2"/>
             </div>
 
+
             <!--Confirm new password-->
             <div class="col-span-6 sm:col-span-4">
                 <x-label for="password_confirmation" :value="__('Confirm Password')"/>
@@ -60,9 +60,6 @@
             <div class="col-span-6 flex justify-end">
                 <x-button class="min-w-max">{{ __('Update') }}</x-button>
             </div>
-            
         </form>
     </x-slot>
-
-
 </x-form-section>
