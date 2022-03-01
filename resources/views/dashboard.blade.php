@@ -15,12 +15,19 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <title>Document</title>
+    {{-- Favicon --}}
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/534/534000.png" type="image/x-icon">
+
+    <title>Prision System</title>
+
 </head>
 
 <body>
+
     <div x-data="{ sidebarOpen: false }">
+
         <div class="flex h-screen bg-gray-100">
+
             <!--It is a background that is activated when the screen size is 768px and the sidebar is displayed-->
             <div :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false"
                 class="fixed z-20 inset-0 bg-black opacity-60 transition-opacity lg:hidden"></div>
@@ -30,20 +37,27 @@
                 class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform border border-l shadow-sm
                         bg-white overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
 
+
                 <!--User role-->
                 <a href="{{ route('dashboard') }}"
                     class="flex items-center justify-center h-auto space-x-2 mx-5 border-b-2 flex-wrap">
+
                     <x-icons.shield class="w-8 max-h-full h-14 text-gray-500" />
+
                     <span class="text-gray-800 text-2xl font-bold uppercase tracking-wide text-center">
-                        {{ Auth::user()->role->name }}
+                        {{ Auth::user()->role->name}}
+
+
+
                     </span>
+
                 </a>
 
                 <!--Sidebar options-->
                 <nav class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
 
-
                     @can('manage-directors')
+                    {{-- https://laravel.com/docs/8.x/requests#inspecting-the-request-path --}}
                     <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('director.*')">
                         <x-slot name="header">
                             <x-icons.director />
@@ -58,6 +72,7 @@
                             </x-dropdown.simple.link>
                         </x-slot>
                     </x-dropdown.simple.option>
+
                     @endcan
 
 
@@ -78,7 +93,6 @@
                     </x-dropdown.simple.option>
                     @endcan
 
-
                     @can('manage-prisoners')
                     <x-dropdown.simple.option title="Hello world" class="w-full" :isActive="request()->routeIs('prisoner.*')">
                         <x-slot name="header">
@@ -97,6 +111,7 @@
                     @endcan
 
                     @can('manage-wards')
+
                         <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('ward.*')">
                             <x-slot name="header">
                                 <x-icons.warehouse/>
@@ -107,7 +122,6 @@
                                 <x-dropdown.simple.link :href="route('ward.index')">
                                     {{ __('List wards') }}
                                 </x-dropdown.simple.link>
-
                                 <x-dropdown.simple.link :href="route('ward.create')">
                                     {{ __('Create a new ward') }}
                                 </x-dropdown.simple.link>
@@ -115,12 +129,15 @@
                         </x-dropdown.simple.option>
                     @endcan
 
+
                     @can('manage-jails')
                         <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('jail.*')">
+
                             <x-slot name="header">
                                 <x-icons.jail/>
                                 <span>{{__("Jails")}}</span>
                             </x-slot>
+
                             <x-slot name="content">
                                 <x-dropdown.simple.link :href="route('jail.index')">
                                     {{ __('List jails') }}
@@ -134,24 +151,68 @@
 
                     @can('manage-assignment')
                         <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('assignment.*')">
+
                             <x-slot name="header">
                                 <x-icons.card/>
                                 <span>{{__("Assignments")}}</span>
                             </x-slot>
+
                             <x-slot name="content">
+
                                 <x-dropdown.simple.link :href="route('assignment.prisoners-jails.index')">
                                     {{ __('Prisoners to jails') }}
                                 </x-dropdown.simple.link>
+
                                 <x-dropdown.simple.link :href="route('assignment.guards-wards.index')">
                                     {{ __('Guards to wards') }}
                                 </x-dropdown.simple.link>
+
                             </x-slot>
+
                         </x-dropdown.simple.option>
                    @endcan
 
-                   
+
+                    {{-- https://laravel.com/docs/9.x/authorization#via-blade-templates --}}
+                    @can('viewAny', App\Models\Report::class)
+
+                        <x-dropdown.simple.option class="w-full" :isActive="request()->routeIs('report.*')">
+
+                            <x-slot name="header">
+                                <x-icons.report/>
+                                <span>{{__("Reports")}}</span>
+                            </x-slot>
+
+                            <x-slot name="content">
+
+                                <x-dropdown.simple.link :href="route('report.index')">
+                                    {{ __('List reports') }}
+                                </x-dropdown.simple.link>
+
+
+                                <x-dropdown.simple.link :href="route('report.create')">
+                                    {{ __('Create a new report') }}
+                                </x-dropdown.simple.link>
+
+                            </x-slot>
+
+                        </x-dropdown.simple.option>
+
+                      @endcan
+
+
+
+
+
+
+
+
+
                 </nav>
             </div>
+
+
+
 
             <!--Main view-->
             <div class="flex-1 flex flex-col">
@@ -167,15 +228,21 @@
 
                     <div class="flex items-center space-x-4">
                         <!--Notifications-->
+
                         <x-dropdown.menu.option>
+
                             <x-slot name="header">
                                 <x-icons.notification />
                             </x-slot>
+
+
                             <x-slot name="content">
                                 <x-dropdown.menu.link>
                                     {{ __('Notifications') }}
                                 </x-dropdown.menu.link>
                             </x-slot>
+
+
                         </x-dropdown.menu.option>
 
                         <!--User options-->
@@ -183,22 +250,31 @@
 
                             <x-slot name="header">
                                 <span class="text-current text-sm hidden sm:block">
+                                    {{-- {{ Auth::user()->first_name }} --}}
                                     {{ Auth::user()->getFullName() }}
                                 </span>
                                 <x-user-avatar src="{{ Auth::user()->image->getUrl() }}" />
                             </x-slot>
 
+
+
+
                             <x-slot name="content">
+
                                 <x-dropdown.menu.link :href="route('profile')">
                                     {{ __('Profile') }}
                                 </x-dropdown.menu.link>
+
                                 <form method="POST" action="{{ route('logout') }}" x-ref="logout">
                                     @csrf
                                     <x-dropdown.menu.link @click="$refs.logout.submit()">
                                         {{ __('Log out') }}
                                     </x-dropdown.menu.link>
                                 </form>
+
                             </x-slot>
+
+
 
                         </x-dropdown.menu.option>
                     </div>
@@ -207,16 +283,17 @@
                 <!-- Page Content -->
                 <main class="overflow-x-hidden overflow-y-auto px-6 py-8">
                     <!-- Session Status -->
-                    <x-session-status class="mb-4 text-center" :status="session('status')" :color="session('color')"/>
+                    <x-session-status class="mb-4 text-center" :status="session('status')"  :color="session('color')"/>
 
                     @yield('content')
+
 
                 </main>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
-
 

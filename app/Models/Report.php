@@ -2,12 +2,22 @@
 
 namespace App\Models;
 
+use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
 {
-    use HasFactory;
+
+
+    use HasFactory, HasImage;
+
+
+
+    protected $fillable = ['title', 'description'];
+
+
+
 
 
     // Relación de uno a muchos
@@ -23,5 +33,6 @@ class Report extends Model
     {
         return $this->morphOne(Image::class,'imageable');
     }
+
 
 }
